@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include<string.h>
+#include <conio.h>
+int main()
+{
+    int snum;
+    printf("Enter number of Students.\n");
+    scanf("%d",&snum);
+    char name[snum][25],max[25],min[25];
+    int a[snum],b,c=0,d,e,g,h,i,f;
+    printf("Enter student name and number.\n");
+    for(b=1;b<=snum;b++)
+    {
+        scanf("%s",&name[b]);
+        scanf("%d",&a[b]);
+    }
+    for(e=1;e<=snum;e++)
+    {
+          if(a[e]>=c)
+        {
+            c=a[e];
+            strcpy(max,name[e]);
+        }
+    }
+    d=c;
+    for(f=1;f<=snum;f++)
+    {
+        if(a[f]<=d)
+        {
+            d=a[f];
+            strcpy(min,name[f]);
+        }
+    }
+    printf("Max student name - %s marks - %d\n",max,c);
+    printf("Min student name - %s marks - %d\n",min,d);
+}
+
