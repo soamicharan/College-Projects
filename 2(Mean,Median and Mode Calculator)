@@ -1,0 +1,102 @@
+#include<stdio.h>
+#include<conio.h>
+float mean(int a[],int b);//declaring three function
+float median(int c[], int d);
+int mode(int e[], int f);
+int main()
+{
+    int len,fr1,mod;
+    float mea,med;
+    printf("Enter length of data.\n");
+    scanf("%d",&len);//scanning the number of data numbers.
+    printf("Enter data.\n");
+    int data[len];  //creating entered size of array
+    for(fr1=0;fr1<len;fr1++)
+    {
+        scanf("%d",&data[fr1]);   //scanning arrays by loop
+    }
+    mea=(float)mean(data,len); //passing arrays and length of data to function mean,median and mode
+    med=(float)median(data,len);
+    mod=mode(data,len);
+    printf("Mean = %.2f\n",mea);
+    printf("Median = %.2f\n",med);
+    if(mod!=9)
+    printf("Mode = %d\n",mod);
+    else
+      printf("Mode does not exists.\n");
+
+    getch();
+}
+float mean(int a[],int b) // this function is to calculate mean value
+{
+    int y,x=0;
+    float z;
+    for(y=0;y<b;y++)
+    {
+        x=x+a[y];
+    }
+    z=(float)x/b;
+    return(z);
+}
+float median(int c[],int d) //this function if for calculating median
+{
+    int x[d],y[d],z=0,i,j,k;
+    float q;
+    for(i=0;i<d;i++)//this for loop to arranging the entered data in decending order
+    {
+        for(j=0;j<d;j++)
+        {
+            if(x[j]==j)
+                continue;
+            else
+                {
+                  if(c[j]>z)
+                  {
+                      z=c[j];
+                      k=j;
+                  }
+                }
+        }
+        x[k]=k;
+        y[i]=z;
+        z=0;
+    }
+    if((d-1)%2==0)
+      {
+       q=(float)y[(d-1)/2];
+       return (q);
+      }
+    else{
+       q=(float)y[(d-2)/2]+(float)y[((d-2)/2)+1];
+       return (q/2);
+}
+}
+int mode(int e[], int f)
+{
+    int x[f],y[f],z=1,i,j,k,q=0,t;
+    for(i=0;i<f;i++)//this for loop to determine the high frequency number in entered data
+    {
+        for(j=i;j<f;j++)
+        {
+            if(e[i]==e[j])
+            {
+                x[i]=z;
+                z++;
+            }
+            else continue;
+        }
+        z=1;
+    }
+    for(k=0;k<f;k++)
+    {
+        if(x[k]>q)
+        {
+            q=x[k];
+            t=k;
+        }
+    }
+    if(q!=1)
+        return(e[t]);
+    else
+        return (9);
+}
