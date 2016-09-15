@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<conio.h>
+#include<windows.h>
+#include<math.h>
+#include<time.h>
+void delay(unsigned int mseconds)
+{
+    clock_t goal = mseconds + clock();
+    while (goal > clock());
+}
+
+COORD coord={0,0};
+void gotoxy(int x,int y)
+ {
+   coord.X=x;
+ coord.Y=y;
+ SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE),coord);
+ }
+ int main()
+ {
+    int a,b,c,d,e,f,r;
+    printf("Enter Radius.Enter greater then 10\n");
+    scanf("%d",&r);
+    a=0;
+  do
+    {
+        c=r-sqrt(r*r-(r-a)*(r-a));
+
+
+        gotoxy(c,a+1);
+        printf("*");
+
+        b=2*r-c;
+        gotoxy(b,a+1);
+        printf("*");
+        a++;
+delay(500);
+    }
+    while(a<r&&c!=0);
+    for(d=a+1;d<=r*2;d++)
+    {
+        e=r-sqrt(r*r-(r-d)*(r-d));
+        if(e==0)
+            continue;
+        gotoxy(e,a+1);
+        printf("*");
+
+
+        f=r*2-e;
+        gotoxy(f,a+1);
+        printf("*");
+        delay(500);
+a++;
+    }
+getch();
+}
