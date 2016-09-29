@@ -1,0 +1,28 @@
+#include<stdio.h>
+#include<conio.h>
+int main()
+{
+    int b,c,d,e,f,g,h,i,j,k;
+    printf("Enter limit of Prime Numbers Range.\n");
+    scanf("%d",&e);
+    int a[e];
+    for(b=2;b<=e;b++)
+        a[b]=b;
+    printf("Prime Numbers are-\n");
+    for(c=2;c<=e;c++)
+    {
+        if(a[c]==0)
+            continue;
+            else
+                {
+                for(d=c+1;d<=e;d++)
+                   {
+                    if(d%a[c]==0)
+                    a[d]=0;
+                    else continue;
+                   }
+                }
+        printf("%d\n",a[c]);
+    }
+getch();
+}
