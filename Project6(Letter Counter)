@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    int a[26],b,c,d,e,f,g;
+    char s[100],al;
+    printf("Enter a string.\n");
+    scanf("%s",s);
+    b=strlen(s);d=0;
+    for(g=0;g<=26;g++)
+        a[g]=0;
+    for(al='a';al<='z';al++)
+    {
+        e=0;
+        for(c=0;c<b;c++)
+        {
+            if(s[c]==al)
+            {
+                a[d]=a[d]+1;
+            }
+
+        }
+        d++;
+    }
+    for(al='a',f=0;al<='z',f<26;al++,f++)
+    {
+        if(a[f]==0)
+            continue;
+        printf("%c - %d\n",al,a[f]);
+    }
+}
