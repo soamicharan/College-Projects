@@ -3,8 +3,8 @@
 #include<string.h>
 int main()
 {
-    int a,b,c,d,e,f=0,g;
-    char s1[100],s2[100],al;
+    int a,b,c,d,e,f=0,g=0;
+    char s1[100],s2[100],al,oc[25];
     printf("Enter first string s1.\n");
     scanf("%s",s1);
     printf("Enter second string s2.\n");
@@ -15,17 +15,17 @@ int main()
         printf("String s1= %s cannot exist in String s2= %s because s1 is bigger then s2\n",s1,s2);
     else
     {
-        for(c=0;c<a;c++)
+        for(c=0;c<b;c++)
         {
             for(d=0;d<a;d++){
             if(s1[d]==s2[c]){
-                e=1;f=1;}
+                e=1;f=1;oc[g]=s1[d];g++;}
              else
                 e=0;
             }
         }
         if(f==1)
-            printf("String s1= %s is exist in String s2= %s.\n",s1,s2);
+            printf("String s1= %s is exist in String s2= %s.The first occurrence of s1 is %c.\n",s1,s2,oc[0]);
              if(f==0)
                 printf("String s1= %s is not exist in String s2= %s.\n",s1,s2);
     }
