@@ -3,7 +3,7 @@
 #include<string.h>
 int main()
 {
-    int a,b,c,d,e,f=0,g=0;
+    int a,b,c,d,e=0,f,g=0,i;
     char s1[100],s2[100],al,oc[25];
     printf("Enter first string s1.\n");
     scanf("%s",s1);
@@ -19,14 +19,27 @@ int main()
         {
             for(d=0;d<a;d++){
             if(s1[d]==s2[c]){
-                e=1;f=1;oc[g]=s1[d];g++;}
-             else
-                e=0;
+                e=e+1;oc[g]=s1[d];g++;}
+            else continue;
+
             }
         }
-        if(f==1)
-            printf("String s1= %s is exist in String s2= %s.The first occurrence of s1 is %c.\n",s1,s2,oc[0]);
-             if(f==0)
+
+        if(e-2==a){
+            printf("String s1= %s is exist in String s2= %s.\nThe occurrence of s1 is\n",s1,s2);
+            for(i=0;i<g;i++)
+            {
+                printf(" %c\n",oc[i]);
+            }
+        }
+            if(e!=0&&e-2!=a){
+            printf("String s1= %s is not fully exist in String s2= %s.\nThe occurrence of s1 is-.\n",s1,s2);
+            for(i=0;i<g;i++)
+            {
+                printf(" %c\n",oc[i]);
+            }
+            }
+             if(e==0)
                 printf("String s1= %s is not exist in String s2= %s.\n",s1,s2);
     }
 getch();
