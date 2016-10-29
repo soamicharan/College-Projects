@@ -1,0 +1,46 @@
+#include<stdio.h>
+#include<conio.h>
+main()
+{
+int mat[3][3],a,b,c,d,e,f,i,j,k,bufmat[2][2],sum;
+printf("Enter matrix.\n");
+sum=0;
+for(a=0;a<3;a++)
+{
+for(b=0;b<3;b++)
+scanf("%d",&mat[a][b]);
+}
+c=1;
+d=0;e=0;f=0;
+printf("BufMat=\n");
+for(i=0;i<3;i++)
+{
+  if((i+1)%2==0)
+  c=-mat[0][i];
+  else
+  c=mat[0][i];
+  for(a=0;a<3;a++)
+  {
+  for(b=0;b<3;b++)
+  {
+  if(a==0||b==i)
+  continue;
+  else
+  {
+  bufmat[d][e]=mat[a][b];
+  e++;
+  }
+  }
+  if(a==0||b==0)
+   continue;
+   else
+   d++;e=0;
+
+	 k=bufmat[f][f]*bufmat[f+1][f+1]-bufmat[f][1]*bufmat[1][f];
+  }
+  sum=sum+(c*k);d=0;e=0;
+}
+printf("Answer = %d.\n",sum);
+getch();
+}
+
