@@ -1,0 +1,71 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+struct list_node{
+int num;
+list_node *ptr;
+};
+class listtmp
+{
+public:
+    list_node *front_ptr,*end_ptr;
+    listtmp()
+    {
+        front_ptr=NULL;
+        end_ptr=NULL;
+    }
+     void addFront(int n){
+         list_node *temp = new list_node;
+         if(end_ptr==NULL)
+            end_ptr=front_ptr=temp;
+         temp->num=n;
+         temp->ptr=NULL;
+         front_ptr->ptr=temp;
+         front_ptr=temp;
+     }
+     void addEnd(int n){
+        list_node *temp=new list_node;
+        temp->num=n;
+        temp->ptr=end_ptr;
+        end_ptr=temp;
+     }
+     void Search(int n){
+        list_node *temp=end_ptr;
+        while(temp!=NULL)
+        {
+            if(temp->num==n){
+                cout<<"number "<<n<<" found"<<endl;
+                return;
+            }
+            else
+                temp=temp->ptr;
+        }
+        cout<<"number "<<n<<" not found"<<endl;
+     }
+     void show(){
+        list_node *temp = end_ptr;
+        while(temp!=NULL){
+            cout<<temp->num<<endl;
+            temp=temp->ptr;
+        }
+     }
+};
+int main()
+{
+    listtmp List;
+    while(true)
+    {
+        cout<<"Press 1 - add number in front\nPress 2 - add number in end\nPress 3 - search number in list\nPress 4 - show list\nPress 5 - exit\n";
+        int ch,n;
+        cin>>ch;
+        switch(ch)
+        {
+            case 1:{cout<<"Enter a number"<<endl;cin>>n;List.addFront(n);break;}
+            case 2:{cout<<"Enter a number"<<endl;cin>>n;List.addEnd(n);break;}
+            case 3:{cout<<"Enter a number"<<endl;cin>>n;List.Search(n);break;}
+            case 4:{List.show();break;}
+            case 5:{exit(0);}
+            default:{cout<<"Wrong input, try again"<<endl;break;}
+        }
+    }
+}
