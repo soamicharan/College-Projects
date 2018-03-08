@@ -1,0 +1,54 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+class shape{
+public:
+    float area;
+    float retarea(){
+        return area;
+    }
+};
+class rectangle:public shape{
+public:
+    float length,width;
+    void readrect(float l,float w){
+    length=l;
+    width=w;
+    }
+    void calcarea(){
+    area=length*width;
+    }
+};
+int main()
+{
+    cout<<"Enter number of rectangles"<<endl;
+    int n;
+    cin>>n;
+    rectangle rec[n];
+    float rect_area[n];
+    for(int i=0;i<n;i++)
+    {
+        cout<<"Enter rectangle "<<i+1<<" length and width"<<endl;
+        float l,b;
+        cin>>l;
+        cin>>b;
+        rec[i].readrect(l,b);
+        rec[i].calcarea();
+        rect_area[i]=rec[i].retarea();
+    }
+    for(int i=0;i<n-1;i++)
+    {
+        for(int j=0;j<n-i-1;j++)
+        {
+            if(rect_area[j]>rect_area[j+1])
+            {
+                float temp=rect_area[j];
+                rect_area[j]=rect_area[j+1];
+                rect_area[j+1]=temp;
+            }
+        }
+    }
+    cout<<"rectangle areas "<<endl;
+    for(int i=0;i<n;i++)
+        cout<<rect_area[i]<<endl;
+}
