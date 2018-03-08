@@ -1,0 +1,118 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+class mattmp{
+	public:
+	int i_array[100];
+	float f_array[100];
+	int int_op=1;
+	int index=0;
+	mattmp(string datatype)
+	{
+		if(datatype == "float")
+			int_op=0;
+	}
+	void read()
+	{
+		if(int_op==1){
+			for(int i=0;i<index;i++)
+			{
+			cout<<i_array[i]<<endl;
+			}
+		}
+		else{
+			for(int i=0;i<index;i++)
+			{
+			cout<<f_array[i]<<endl;
+			}
+		}
+	}
+	void sort()
+	{
+		if(int_op==1){
+			int temp;
+			for(int i=0;i<index-1;i++){
+				for(int j=0;j<index-i-1;j++){
+					if(i_array[j]>i_array[j+1]){
+						temp=i_array[j];
+						i_array[j]=i_array[j+1];
+						i_array[j+1]=temp;
+					}
+
+				}
+			}
+		}
+		else{
+			float tem;
+			for(int i=0;i<index-1;i++){
+				for(int j=0;j<index-i-1;j++){
+					if(f_array[j]>f_array[j+1]){
+						tem=f_array[j];
+						f_array[j]=f_array[j+1];
+						f_array[j+1]=tem;
+					}
+
+				}
+			}
+		}
+	}
+	void show(){
+		if(int_op==1){
+            sort();
+			read();
+		}
+		else{
+            sort();
+			read();
+		}
+	}
+    void append(int num)
+    {
+		if(index<100)
+			i_array[index++]=num;
+		else
+			cout<<"array overflow"<<endl;
+    }
+    void append(float n){
+		if(index<100)
+			f_array[index++]=n;
+		else
+			cout<<"array overflow"<<endl;
+    }
+};
+int main()
+{
+    cout<<"enter datatype int/float"<<endl;
+    string datatype;
+    cin>>datatype;
+	mattmp array_manupulate(datatype);
+	while(true)
+    {
+        cout<<"Press 1 - read\nPress 2 - append\nPress 3 - sort\nPress 4 - show\nPress 5 - Exit\n";
+        int ch;
+        cin>>ch;
+        switch(ch){
+            case 1:{array_manupulate.read();break;}
+            case 2:{
+                if(datatype=="int"){
+                    int i_num;
+                    cout<<"Enter number"<<endl;
+                    cin>>i_num;
+                    array_manupulate.append(i_num);
+                }
+                else{
+                    float f_num;
+                    cout<<"Enter number"<<endl;
+                    cin>>f_num;
+                    array_manupulate.append(f_num);
+                }
+                break;
+            }
+            case 3:{array_manupulate.sort();break;}
+            case 4:{array_manupulate.show();break;}
+            case 5:{exit(0);}
+            default:{cout<<"wrong input, try again"<<endl;break;}
+        }
+    }
+
+}
