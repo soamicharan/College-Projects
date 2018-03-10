@@ -1,0 +1,167 @@
+#include<iostream>
+#include<stdlib.h>
+using namespace std;
+class matrix_operation
+{
+    public:
+    int row1,col1,row2,col2;
+
+    void input_mat(int r1,int c1,int r2,int c2)
+    {
+         row1=r1;
+        col1=c1;
+        row2=r2;
+        col2=c2;
+        cout<<"Enter matrix 1"<<endl;
+        for(int i=0;i<row1;i++)
+        {
+            for(int j=0;j<col1;j++)
+            {
+                cin>>mat1[i][j];
+            }
+        }
+        cout<<"Enter matrix 2"<<endl;
+        for(int i=0;i<row2;i++)
+        {
+            for(int j=0;j<col2;j++)
+            {
+                cin>>mat2[i][j];
+            }
+        }
+    }
+    int mat1[row1][col1];
+    int mat2[row2][col2];
+    int add_mat[row1][col1];
+    int mul_mat[row1][col2];
+    void read_mat()
+    {
+         cout<<"matrix 1"<<endl;
+        for(int i=0;i<row1;i++)
+        {
+            for(int j=0;j<col1;j++)
+            {
+                cout<<mat1[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+        cout<<"matrix 2"<<endl;
+        for(int i=0;i<row2;i++)
+        {
+            for(int j=0;j<col2;j++)
+            {
+                cout<<mat2[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+    }
+    void add_matrix()
+    {
+        if(row1!=row2 || col1!=col2)
+        {
+            cout<<"Dimension not matched, addition not possible"<<endl;
+            return;
+        }
+        for(int i=0;i<row1;i++)
+        {
+            for(int j=0;j<col1;j++)
+            {
+                add_mat[i][j]=mat1[i][j]+mat2[i][j];
+            }
+        }
+    }
+    void mul_matrix()
+    {
+        int temp=0;
+        if(col1!=row2)
+        {
+            cout<<"Dimension not matched, addition not possible"<<endl;
+            return;
+        }
+        for(int i=0;i<row1;i++)
+        {
+            for(int j=0;j<col2;j++)
+            {
+                for(int k=0;k<row2;k++)
+                {
+                    temp+=mat1[i][k]*mat2[j][k];
+                }
+                mul_mat[i][j]=temp;
+            }
+        }
+    }
+    void output_matrix()
+    {
+        cout<<"addition matrix"<<endl;
+        for(int i=0;i<row1;i++)
+        {
+            for(int j=0;j<col1;j++)
+            {
+                cout<<add_mat[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+        cout<<"multiplication matrix"<<endl;
+        for(int i=0;i<row1;i++)
+        {
+            for(int j=0;j<col2;j++)
+            {
+                cout<<mul_mat[i][j]<<" ";
+            }
+            cout<<endl;
+        }
+    }
+};
+int main()
+{
+    int r1,c1,r2,c2;
+    cout<<"Enter dimension of first matrix"<<endl;
+    cin>>r1;
+    cin>>c1;
+    cout<<"Enter dimension of second matrix"<<endl;
+    cin>>r2;
+    cin>>c2;
+    matrix_operation matrix;
+    while(true)
+    {
+        cout<<"Press 1 - Enter Matrix\nPress 2 - Read Matrix\nPress 3 - add Matrices\nPress 4 -Multiply matrices\nPress 5 - show output result\nPress 6 - exit\n";
+        int ch;
+        cin>>ch;
+        switch(ch)
+        {
+            case 1:{
+            int r1,c1,r2,c2;
+            cout<<"Enter dimension of first matrix"<<endl;
+            cin>>r1;
+            cin>>c1;
+            cout<<"Enter dimension of second matrix"<<endl;
+            cin>>r2;
+            cin>>c2;
+            matrix.input_mat(int r1,int c1,int r2,int c2);
+            break;
+            }
+            case 2:{
+            matrix.read_mat();
+            break;
+            }
+            case 3:{
+            matrix.add_matrix();
+            break;
+            }
+            case 4:{
+            matrix.mul_matrix();
+            break;
+            }
+            case 5:{
+            matrix.output.matrix();
+            break;
+            }
+            case 6:{
+            exit(0);
+            }
+            default:{
+            cout<<"Wrong input, please try again"<<endl;
+            break;
+            }
+        }
+    }
+}
