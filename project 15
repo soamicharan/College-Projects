@@ -1,0 +1,71 @@
+#include<iostream>
+#include<stdlib.h>
+#define MAX 100
+using namespace std;
+class queue_class
+{
+public:
+    int queue[MAX];
+    int front=-1;
+    int rear=-1;
+   void push()
+    {
+    if(rear==MAX-1)
+    {
+        cout<<"Queue is full.\n";
+    }
+    else
+    {
+        if(front==-1)
+            front=0;
+        cout<<"Enter a element to push.\n";
+        int item;
+        cin>>item;
+        queue[++rear]=item;
+    }
+    }
+    void pop()
+    {
+    if(front==-1||front>rear)
+    {
+        cout<<"Queue is empty.\n";
+        return;
+    }
+    int item=queue[front];
+    front++;
+    cout<<"Poped element = "<<item<<endl;
+    }
+    void print()
+    {
+    int a;
+    for(a=front;a<=rear;a++)
+        cout<<queue[a]<<endl;
+    }
+};
+int main()
+{
+    queue_class q;
+    while(true){
+    cout<<"1-Push element.\n2-Pop element.\n3-Print stack.\n4-Exit.\n";
+    int choice;
+    cin>>choice;
+    switch(choice)
+    {
+        case 1:{
+        q.push();
+        break;
+        }
+        case 2:{
+        q.pop();
+        break;
+        }
+        case 3:{
+        q.print();
+        break;
+        }
+        case 4:{
+        exit(0);
+        }
+    }
+    }
+}
