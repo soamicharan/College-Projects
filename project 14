@@ -1,0 +1,61 @@
+#include<iostream>
+using namespace std;
+class base_class
+{
+	private:
+		int private_data;
+	protected:
+		int protected_data;
+	public:
+		int public_data;
+	void set_data(int a,int b,int c)
+	{
+		cout<<"any data variable can access and modfied within the class"<<endl;
+		private_data=a;
+		protected_data=b;
+		public_data=c;
+	}
+	void get_data()
+	{
+		cout<<"private_data - "<<private_data<<endl<<"protected data - "<<protected_data<<endl<<"public data - "<<public_data<<endl;
+	}
+};
+class derived_class_public:public base_class
+{
+    public:
+	void get_base_data()
+	{
+
+        /*cout<<"private_data - "<<private_data<<endl;*///gives error
+		cout<<"protected data - "<<protected_data<<endl;
+		cout<<"public data - "<<public_data<<endl;
+	}
+};
+class derived_class_private:private base_class
+{
+    public:
+	void get_base_data()
+	{
+        //cout<<"private_data - "<<private_data<<endl; gives error
+		cout<<"protected data - "<<protected_data<<endl;
+		cout<<"public data - "<<public_data<<endl;
+	}
+};
+int main()
+{
+	base_class base_obj;
+	derived_class_public derived_obj_public;
+	derived_class_private derived_obj_private;
+	base_obj.set_data(10,20,30);
+	base_obj.get_data();
+	cout<<"derived public class"<<endl;
+	derived_obj_public.get_base_data();
+	try{
+		cout<<"derived private class"<<endl;
+		derived_obj_private.get_base_data();
+	}
+	catch(const char* msg)
+	{
+		cout<<msg<<endl;
+	}
+}
